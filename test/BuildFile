@@ -1,0 +1,8 @@
+<use name=FWCore/Framework>
+<use name=Foundation/PluginManager>
+<use name=FWCore/ParameterSet>
+<use name=DataFormats/L1GlobalMuonTrigger>
+<use name=L1Trigger/GlobalMuonTrigger>
+<library file=L1MuGMTDump.cc name=L1MuGMTDump>
+  <flags SEAL_PLUGIN_NAME="L1MuGMTDump">
+</library>
