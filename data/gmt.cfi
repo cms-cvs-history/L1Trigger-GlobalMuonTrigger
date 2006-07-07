@@ -45,4 +45,6 @@
     uint32 CDLConfigWordCSCDT = 3
     uint32 CDLConfigWordbRPCCSC = 16
     uint32 CDLConfigWordfRPCDT = 1
+
+    untracked bool WriteLUTsAndRegs = false
   }
