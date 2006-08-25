@@ -3,6 +3,11 @@
 <use name=FWCore/ParameterSet>
 <use name=DataFormats/L1GlobalMuonTrigger>
 <use name=L1Trigger/GlobalMuonTrigger>
+<use name=clhep>
+<use name=root>
 <library file=L1MuGMTDump.cc name=L1MuGMTDump>
   <flags SEAL_PLUGIN_NAME="L1MuGMTDump">
+</library>
+<library file=L1MuGMTTree.cc name=L1MuGMTTree>
+  <flags SEAL_PLUGIN_NAME="L1MuGMTTree">
 </library>
