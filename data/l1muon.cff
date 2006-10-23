@@ -1,3 +1,7 @@
+include "Geometry/CSCGeometry/data/cscGeometry.cfi"
+include "Geometry/DTGeometry/data/dtGeometry.cfi"
+include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
+
 # DT Trigger Primitives
 module dttrigprod = DTTrigProd{
   untracked double syncDelay  = 500
@@ -32,3 +36,4 @@ sequence dttrig = {dttrigprod, dttf}
 sequence csctrig = {lctproducer, csc_tf_cands}
 sequence l1muregional = { dttrig & csctrig & rpctrig }
 sequence l1muon = { l1muregional, gmt }
+
