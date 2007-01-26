@@ -32,8 +32,11 @@ include "L1Trigger/RPCTrigger/data/RPCTrigger.cfi"
 include "L1Trigger/GlobalMuonTrigger/data/gmt.cfi"
 
 
-sequence dttrig = {dttrigprod, dttf}
-sequence csctrig = {lctproducer, csc_tf_cands}
-sequence l1muregional = { dttrig & csctrig & rpctrig }
+// sequence dttrig = {dttrigprod, dttf}
+// sequence csctrig = {lctproducer, csc_tf_cands}
+// sequence l1muregional = { dttrig & csctrig & rpctrig }
+sequence tpg = {lctproducer, dttrigprod}
+sequence tf = {csc_tf_cands, dttf}
+sequence l1muregional = { tpg, tf, rpctrig }
 sequence l1muon = { l1muregional, gmt }
 
