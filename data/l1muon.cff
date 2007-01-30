@@ -12,7 +12,8 @@ module dttrigprod = DTTrigProd{
 
 # DT Track Finder
 module dttf = DTTrackFinder{
-  untracked string lutdir ="/afs/cern.ch/cms/sw/slc3_ia32_gcc323/cms/cmssw/CMSSW_1_2_0_pre1/src/L1Trigger/DTTrackFinder/parameters/"
+#use default path
+//  untracked string lutdir = "L1Trigger/DTTrackFinder/parameters/"
 }
 
 # CSC Trigger Primitives
