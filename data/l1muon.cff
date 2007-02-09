@@ -3,12 +3,7 @@ include "Geometry/DTGeometry/data/dtGeometry.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
 
 # DT Trigger Primitives
-module dttrigprod = DTTrigProd{
-  untracked double syncDelay  = 500
-  untracked bool   globalSync = false
-  include "L1Trigger/DTTrigger/data/DTTrigSync.cfi"
-  untracked bool DTTFSectorNumbering = true
-}
+include "L1Trigger/DTTrigger/data/dttpgprod.cfi"
 
 # DT Track Finder
 module dttf = DTTrackFinder{
@@ -36,7 +31,7 @@ include "L1Trigger/GlobalMuonTrigger/data/gmt.cfi"
 // sequence dttrig = {dttrigprod, dttf}
 // sequence csctrig = {lctproducer, csc_tf_cands}
 // sequence l1muregional = { dttrig & csctrig & rpctrig }
-sequence tpg = {lctproducer, dttrigprod}
+sequence tpg = {lctproducer, dttpgprod}
 sequence tf = {csc_tf_cands, dttf}
 sequence l1muregional = { tpg, tf, rpctrig }
 sequence l1muon = { l1muregional, gmt }
