@@ -1,6 +1,7 @@
 
   include "L1TriggerConfig/L1ScalesProducers/data/L1MuTriggerScales.cfi"
   include "L1TriggerConfig/L1ScalesProducers/data/L1MuGMTScales.cfi"
+  include "L1TriggerConfig/L1ScalesProducers/data/L1MuScalesRecords.cff"
 
   module gmt = L1MuGlobalMuonTrigger {
     untracked int32 Debug = 0
