@@ -7,8 +7,8 @@
 <use name=hepmc>
 <use name=root>
 <library file=L1MuGMTDump.cc name=L1MuGMTDump>
-  <flags SEAL_PLUGIN_NAME="L1MuGMTDump">
+  <flags EDM_PLUGIN=1>
 </library>
 <library file=L1MuGMTTree.cc name=L1MuGMTTree>
-  <flags SEAL_PLUGIN_NAME="L1MuGMTTree">
+  <flags EDM_PLUGIN=1>
 </library>
