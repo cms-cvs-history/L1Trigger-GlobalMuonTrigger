@@ -3,7 +3,6 @@
 <use name=FWCore/ParameterSet>
 <use name=SimDataFormats/HepMCProduct>
 <use name=DataFormats/L1GlobalMuonTrigger>
-<use name=L1Trigger/GlobalMuonTrigger>
 <use name=hepmc>
 <use name=root>
 <library file=L1MuGMTDump.cc name=L1MuGMTDump>
