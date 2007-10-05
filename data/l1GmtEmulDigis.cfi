@@ -1,5 +1,11 @@
 
   module l1GmtEmulDigis = L1MuGlobalMuonTrigger {
+
+    InputTag DTCandidates = l1DttfEmulDigis:DT
+    InputTag CSCCandidates = l1CscTfEmulDigis:CSC
+    InputTag RPCbCandidates = l1RpcEmulDigis:RPCb
+    InputTag RPCfCandidates = l1RpcEmulDigis:RPCf
+
     untracked int32 Debug = 0
     int32 BX_min = -4                     // BX's to be processed
     int32 BX_max = 4
