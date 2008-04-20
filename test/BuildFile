@@ -11,6 +11,3 @@
 <library file=L1MuGMTTree.cc name=L1MuGMTTree>
   <flags EDM_PLUGIN=1>
 </library>
-<library file=L1MuGMTPattern.cc name=L1MuGMTPattern>
-  <flags EDM_PLUGIN=1>
-</library>
