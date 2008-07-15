@@ -1,0 +1,10 @@
+  module CruzetL1DTfilter = CruzetL1DTfilter {
+  // mode:
+  // 1 - bottom only
+  // 2 - top only
+  // 3 - top or bottom (default)
+  // 4 - top and bottom
+    int32 mode = 3
+    InputTag GMTInputTag = gtDigis
+  }
+
