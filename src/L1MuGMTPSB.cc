@@ -37,7 +37,6 @@
 #include "L1Trigger/GlobalMuonTrigger/src/L1MuGMTConfig.h"
 #include "CondFormats/L1TObjects/interface/L1MuTriggerScales.h"
 #include "CondFormats/L1TObjects/interface/L1MuTriggerPtScale.h"
-#include "CondFormats/L1TObjects/interface/L1MuGMTChannelMask.h"
 
 #include "L1Trigger/GlobalMuonTrigger/interface/L1MuGlobalMuonTrigger.h"
 #include "DataFormats/L1CaloTrigger/interface/L1CaloCollections.h"
@@ -91,10 +90,7 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
 
   edm::Handle<std::vector<L1MuRegionalCand> > rc_handle;
 
-  const L1MuGMTChannelMask* theChannelMask = L1MuGMTConfig::getGMTChanMask();
-  unsigned mask = theChannelMask->getSubsystemMask();
-  
-  if((L1MuGMTConfig::getDTInputTag()).label() != "none" && !(mask&1) ) {
+  if((L1MuGMTConfig::getDTInputTag()).label() != "none" ) {
     e.getByLabel(L1MuGMTConfig::getDTInputTag(),rc_handle);
     if(rc_handle.isValid()) {
       getDTBX(rc_handle.product(),bx);
@@ -104,7 +100,7 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
       << "\nrequested, but not found in the event." << std::endl;      
     }
   }
-  if((L1MuGMTConfig::getCSCInputTag()).label() != "none" && !(mask&4) ) {
+  if((L1MuGMTConfig::getCSCInputTag()).label() != "none" ) {
     e.getByLabel(L1MuGMTConfig::getCSCInputTag(),rc_handle);
     if(rc_handle.isValid()) {
       getCSC(rc_handle.product(),bx);
@@ -114,7 +110,7 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
       << "\nrequested, but not found in the event." << std::endl;      
     }
   }
-  if((L1MuGMTConfig::getRPCbInputTag()).label() != "none" && !(mask&2) ) {
+  if((L1MuGMTConfig::getRPCbInputTag()).label() != "none" ) {
     e.getByLabel(L1MuGMTConfig::getRPCbInputTag(),rc_handle);
     if(rc_handle.isValid()) {
       getRPCb(rc_handle.product(),bx);
@@ -124,7 +120,7 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
       << "\nrequested, but not found in the event." << std::endl;      
     }
   }
-  if((L1MuGMTConfig::getRPCfInputTag()).label() != "none" && !(mask&8) ) {
+  if((L1MuGMTConfig::getRPCfInputTag()).label() != "none" ) {
     e.getByLabel(L1MuGMTConfig::getRPCfInputTag(),rc_handle);
     if(rc_handle.isValid()) {
       getRPCf(rc_handle.product(),bx);
@@ -134,7 +130,6 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
       << "\nrequested, but not found in the event." << std::endl;      
     }
   }
-
   ////////////////////////////////////
 
   const L1MuTriggerScales* theTriggerScales = L1MuGMTConfig::getTriggerScales();
