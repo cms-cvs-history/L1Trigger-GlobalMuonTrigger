@@ -5,8 +5,8 @@
 //   Description: Pipelined Synchronising Buffer module 
 //
 //
-//   $Date: 2008/02/01 14:02:28 $
-//   $Revision: 1.11 $
+//   $Date: 2008/04/17 23:18:30 $
+//   $Revision: 1.12 $
 //
 //   Author :
 //   N. Neumeister            CERN EP 
@@ -37,6 +37,7 @@
 #include "L1Trigger/GlobalMuonTrigger/src/L1MuGMTConfig.h"
 #include "CondFormats/L1TObjects/interface/L1MuTriggerScales.h"
 #include "CondFormats/L1TObjects/interface/L1MuTriggerPtScale.h"
+#include "CondFormats/L1TObjects/interface/L1MuGMTChannelMask.h"
 
 #include "L1Trigger/GlobalMuonTrigger/interface/L1MuGlobalMuonTrigger.h"
 #include "DataFormats/L1CaloTrigger/interface/L1CaloCollections.h"
@@ -90,21 +91,48 @@ void L1MuGMTPSB::receiveData(edm::Event& e, int bx) {
 
   edm::Handle<std::vector<L1MuRegionalCand> > rc_handle;
 
-  if((L1MuGMTConfig::getDTInputTag()).label() != "none") {
+  const L1MuGMTChannelMask* theChannelMask = L1MuGMTConfig::getGMTChanMask();
+  unsigned mask = theChannelMask->getSubsystemMask();
+  
+  if((L1MuGMTConfig::getDTInputTag()).label() != "none" && !(mask&1) ) {
     e.getByLabel(L1MuGMTConfig::getDTInputTag(),rc_handle);
-    getDTBX(rc_handle.product(),bx);
+    if(rc_handle.isValid()) {
+      getDTBX(rc_handle.product(),bx);
+    } else {
+      edm::LogWarning("GlobalMuonTrigger")
+      << "\nWarning: GlobalMuonTrigger: input tag " << L1MuGMTConfig::getDTInputTag()
+      << "\nrequested, but not found in the event." << std::endl;      
+    }
   }
-  if((L1MuGMTConfig::getCSCInputTag()).label() != "none") {
+  if((L1MuGMTConfig::getCSCInputTag()).label() != "none" && !(mask&4) ) {
     e.getByLabel(L1MuGMTConfig::getCSCInputTag(),rc_handle);
-    getCSC(rc_handle.product(),bx);
+    if(rc_handle.isValid()) {
+      getCSC(rc_handle.product(),bx);
+    } else {
+      edm::LogWarning("GlobalMuonTrigger")
+      << "\nWarning: GlobalMuonTrigger: input tag " << L1MuGMTConfig::getCSCInputTag()
+      << "\nrequested, but not found in the event." << std::endl;      
+    }
   }
-  if((L1MuGMTConfig::getRPCbInputTag()).label() != "none") {
+  if((L1MuGMTConfig::getRPCbInputTag()).label() != "none" && !(mask&2) ) {
     e.getByLabel(L1MuGMTConfig::getRPCbInputTag(),rc_handle);
-    getRPCb(rc_handle.product(),bx);
+    if(rc_handle.isValid()) {
+      getRPCb(rc_handle.product(),bx);
+    } else {
+      edm::LogWarning("GlobalMuonTrigger")
+      << "\nWarning: GlobalMuonTrigger: input tag " << L1MuGMTConfig::getRPCbInputTag()
+      << "\nrequested, but not found in the event." << std::endl;      
+    }
   }
-  if((L1MuGMTConfig::getRPCfInputTag()).label() != "none") {
+  if((L1MuGMTConfig::getRPCfInputTag()).label() != "none" && !(mask&8) ) {
     e.getByLabel(L1MuGMTConfig::getRPCfInputTag(),rc_handle);
-    getRPCf(rc_handle.product(),bx);
+    if(rc_handle.isValid()) {
+      getRPCf(rc_handle.product(),bx);
+    } else {
+      edm::LogWarning("GlobalMuonTrigger")
+      << "\nWarning: GlobalMuonTrigger: input tag " << L1MuGMTConfig::getRPCfInputTag()
+      << "\nrequested, but not found in the event." << std::endl;      
+    }
   }
 
   ////////////////////////////////////
@@ -443,7 +471,9 @@ void L1MuGMTPSB::getCalo(edm::Event& e) {
       //                                     << (*iter).mip();
     }
   } else {
-    edm::LogVerbatim("GMT_PSB_info") << " Calorimeter MIP/QUIET bits not found in the Event ";
+    edm::LogWarning("GlobalMuonTrigger")
+    << "\nWarning: GlobalMuonTrigger: input tag " << L1MuGMTConfig::getMipIsoInputTag()
+    << "\nrequested, but not found in the event." << std::endl;
   }
   
 }
