@@ -31,3 +31,7 @@
 <library file=L1GmtTriggerSource.cc name=L1GmtTriggerSource>
   <flags EDM_PLUGIN=1>
 </library>
+<library file=L1MuGMTPattern.cc name=L1MuGMTPattern>
+  <flags EDM_PLUGIN=1>
+</library>
+
